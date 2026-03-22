@@ -5,7 +5,7 @@
       <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
         <path 
           d="M0,50 C360,100 720,0 1080,50 C1260,75 1380,25 1440,50 L1440,0 L0,0 Z" 
-          fill="#e8f7f7"
+          fill="#0d1b2a"
         />
       </svg>
     </div>
@@ -98,7 +98,7 @@
 <style scoped>
 .footer {
   position: relative;
-  background: linear-gradient(135deg, var(--ocean-deep) 0%, #0a3a3a 100%);
+  background: linear-gradient(135deg, #0891b2 0%, #0a1628 100%);
   color: white;
   padding: 6rem 2rem 2rem;
 }

@@ -1,19 +1,9 @@
 <template>
   <section id="features" class="features-section">
-    <!-- Decorative Elements -->
-    <div class="wave-top">
-      <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
-        <path 
-          d="M0,50 C360,100 720,0 1080,50 C1260,75 1380,25 1440,50 L1440,0 L0,0 Z" 
-          fill="#f4e4d4"
-        />
-      </svg>
-    </div>
-
     <div class="section">
       <div class="section-header">
         <span class="section-label">Features</span>
-        <h2 class="section-title">Everything You Need to Debug</h2>
+        <h2 class="section-title gradient-text">Everything You Need to Debug</h2>
         <p class="section-description">
           Miru provides a complete toolkit for debugging Go applications with style and clarity.
         </p>
@@ -43,16 +33,6 @@
           </div>
         </div>
       </div>
-    </div>
-
-    <!-- Bottom Wave -->
-    <div class="wave-bottom">
-      <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
-        <path 
-          d="M0,50 C360,0 720,100 1080,50 C1260,25 1380,75 1440,50 L1440,100 L0,100 Z" 
-          fill="#e8f7f7"
-        />
-      </svg>
     </div>
   </section>
 </template>
@@ -119,32 +99,8 @@ const features = [
 <style scoped>
 .features-section {
   position: relative;
-  background: var(--sand);
+  background: var(--bg-secondary);
   padding: 4rem 0 6rem;
-}
-
-/* Waves */
-.wave-top,
-.wave-bottom {
-  position: absolute;
-  width: 100%;
-  height: 100px;
-  left: 0;
-  overflow: hidden;
-}
-
-.wave-top {
-  top: -99px;
-}
-
-.wave-bottom {
-  bottom: -99px;
-}
-
-.wave-top svg,
-.wave-bottom svg {
-  width: 100%;
-  height: 100%;
 }
 
 /* Section Header */
@@ -156,23 +112,24 @@ const features = [
 .section-label {
   display: inline-block;
   padding: 0.5rem 1rem;
-  background: var(--ocean-pale);
-  color: var(--ocean-teal);
+  background: var(--bg-tertiary);
+  color: var(--ocean-cyan);
   font-size: 0.875rem;
   font-weight: 600;
   border-radius: 50px;
   margin-bottom: 1rem;
+  border: 1px solid var(--border-color);
 }
 
 .section-title {
   font-size: clamp(2rem, 4vw, 3rem);
-  color: var(--text-dark);
+  color: var(--text-primary);
   margin-bottom: 1rem;
 }
 
 .section-description {
   font-size: 1.125rem;
-  color: var(--text-medium);
+  color: var(--text-secondary);
   max-width: 600px;
   margin: 0 auto;
 }
@@ -186,11 +143,11 @@ const features = [
 
 /* Feature Card */
 .feature-card {
-  background: white;
+  background: var(--bg-card);
   border-radius: 24px;
   padding: 2rem;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid var(--ocean-light);
+  border: 1px solid var(--border-color);
   position: relative;
   overflow: hidden;
 }
@@ -213,17 +170,19 @@ const features = [
 
 .feature-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 50px rgba(13, 79, 79, 0.15);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  border-color: var(--border-hover);
 }
 
 .feature-card.featured {
   grid-column: span 1;
   background: linear-gradient(135deg, var(--ocean-deep) 0%, var(--ocean-teal) 100%);
   color: white;
+  border: none;
 }
 
 .feature-card.featured::before {
-  background: var(--gradient-coral);
+  background: var(--coral-soft);
 }
 
 .feature-card.featured .feature-title,
@@ -271,13 +230,13 @@ const features = [
 /* Content */
 .feature-title {
   font-size: 1.25rem;
-  color: var(--text-dark);
+  color: var(--text-primary);
   margin-bottom: 0.75rem;
 }
 
 .feature-description {
   font-size: 0.9375rem;
-  color: var(--text-medium);
+  color: var(--text-secondary);
   line-height: 1.6;
   margin-bottom: 1.25rem;
 }
@@ -291,11 +250,12 @@ const features = [
 
 .feature-tag {
   padding: 0.375rem 0.875rem;
-  background: var(--ocean-pale);
-  color: var(--ocean-teal);
+  background: var(--bg-tertiary);
+  color: var(--ocean-cyan);
   font-size: 0.75rem;
   font-weight: 600;
   border-radius: 50px;
+  border: 1px solid var(--border-color);
 }
 
 /* Responsive */

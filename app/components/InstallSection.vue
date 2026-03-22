@@ -124,7 +124,7 @@ const copyInstall = async () => {
 
 <style scoped>
 .install-section {
-  background: var(--gradient-foam);
+  background: var(--bg-secondary);
   padding: 4rem 0;
 }
 
@@ -143,23 +143,24 @@ const copyInstall = async () => {
 .section-label {
   display: inline-block;
   padding: 0.5rem 1rem;
-  background: white;
-  color: var(--ocean-teal);
+  background: var(--bg-tertiary);
+  color: var(--ocean-cyan);
   font-size: 0.875rem;
   font-weight: 600;
   border-radius: 50px;
   margin-bottom: 1rem;
+  border: 1px solid var(--border-color);
 }
 
 .section-title {
   font-size: clamp(2rem, 4vw, 3rem);
-  color: var(--text-dark);
+  color: var(--text-primary);
   margin-bottom: 0.75rem;
 }
 
 .section-description {
   font-size: 1.125rem;
-  color: var(--text-medium);
+  color: var(--text-secondary);
 }
 
 /* Install Steps */
@@ -196,20 +197,20 @@ const copyInstall = async () => {
 
 .step-title {
   font-size: 1.25rem;
-  color: var(--text-dark);
+  color: var(--text-primary);
   margin-bottom: 0.5rem;
 }
 
 .step-description {
   font-size: 0.9375rem;
-  color: var(--text-medium);
+  color: var(--text-secondary);
   margin-bottom: 1rem;
 }
 
 /* Code Snippet */
 .code-snippet {
-  background: var(--ocean-deep);
-  color: var(--ocean-foam);
+  background: var(--bg-secondary);
+  color: var(--ocean-light);
   padding: 1rem 1.25rem;
   border-radius: 12px;
   font-family: 'Fira Code', monospace;
@@ -218,7 +219,7 @@ const copyInstall = async () => {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  border: 1px solid var(--ocean-teal);
+  border: 1px solid var(--border-color);
 }
 
 .code-snippet.small {
@@ -235,10 +236,10 @@ const copyInstall = async () => {
 
 .copy-btn {
   padding: 0.5rem;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--bg-tertiary);
   border: none;
   border-radius: 6px;
-  color: var(--ocean-foam);
+  color: var(--ocean-cyan);
   cursor: pointer;
   transition: all 0.2s ease;
   display: flex;
@@ -247,18 +248,18 @@ const copyInstall = async () => {
 }
 
 .copy-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--border-hover);
 }
 
 /* Install Card */
 .install-card {
-  background: white;
+  background: var(--bg-card);
   border-radius: 24px;
   padding: 2.5rem;
-  box-shadow: 0 20px 60px rgba(13, 79, 79, 0.12);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   position: sticky;
   top: 2rem;
-  border: 1px solid var(--ocean-light);
+  border: 1px solid var(--border-color);
   text-align: center;
 }
 
@@ -269,13 +270,13 @@ const copyInstall = async () => {
 
 .card-title {
   font-size: 1.5rem;
-  color: var(--text-dark);
+  color: var(--text-primary);
   margin-bottom: 0.75rem;
 }
 
 .card-description {
   font-size: 0.9375rem;
-  color: var(--text-medium);
+  color: var(--text-secondary);
   margin-bottom: 1.5rem;
   line-height: 1.6;
 }
@@ -295,7 +296,7 @@ const copyInstall = async () => {
   justify-content: center;
   gap: 2rem;
   padding-top: 1.5rem;
-  border-top: 1px solid var(--ocean-light);
+  border-top: 1px solid var(--border-color);
 }
 
 .stat {
@@ -308,12 +309,12 @@ const copyInstall = async () => {
 .stat-value {
   font-size: 1.25rem;
   font-weight: 700;
-  color: var(--ocean-teal);
+  color: var(--ocean-cyan);
 }
 
 .stat-label {
   font-size: 0.75rem;
-  color: var(--text-light);
+  color: var(--text-tertiary);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }

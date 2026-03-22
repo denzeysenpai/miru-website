@@ -211,7 +211,7 @@ const copyCode = async () => {
 
 <style scoped>
 .code-section {
-  background: var(--ocean-pale);
+  background: var(--bg-primary);
   padding: 4rem 0;
 }
 
@@ -224,22 +224,24 @@ const copyCode = async () => {
 .section-label {
   display: inline-block;
   padding: 0.5rem 1rem;
-  background: white;
-  color: var(--ocean-teal);
+  background: var(--bg-tertiary);
+  color: var(--ocean-cyan);
   font-size: 0.875rem;
   font-weight: 600;
   border-radius: 50px;
   margin-bottom: 1rem;
+  border: 1px solid var(--border-color);
 }
 
 .section-title {
   font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--text-primary);
   margin-bottom: 1rem;
 }
 
 .section-description {
   font-size: 1.125rem;
-  color: var(--text-medium);
+  color: var(--text-secondary);
 }
 
 /* Tabs */
@@ -256,25 +258,27 @@ const copyCode = async () => {
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1.25rem;
-  background: white;
-  border: 2px solid transparent;
+  background: var(--bg-card);
+  border: 2px solid var(--border-color);
   border-radius: 12px;
   font-size: 0.9375rem;
   font-weight: 500;
-  color: var(--text-medium);
+  color: var(--text-secondary);
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .code-tab:hover {
   border-color: var(--ocean-cyan);
-  color: var(--ocean-teal);
+  color: var(--ocean-cyan);
+  background: var(--bg-tertiary);
 }
 
 .code-tab.active {
   background: var(--ocean-cyan);
-  color: white;
+  color: var(--bg-primary);
   border-color: var(--ocean-cyan);
+  font-weight: 600;
 }
 
 .tab-icon {
