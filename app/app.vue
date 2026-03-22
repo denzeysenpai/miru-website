@@ -36,7 +36,7 @@
 
     <main class="relative pt-16">
       <!-- Hero Section -->
-      <section id="hero" class="relative min-h-[90vh] flex flex-col items-center justify-center px-6 overflow-hidden">
+      <section id="hero" class="relative min-h-[90vh] flex flex-col items-center justify-center px-6 py-20 overflow-hidden">
         <!-- Ambient Glows -->
         <div class="absolute top-1/4 -left-20 w-96 h-96 bg-primary-fixed-dim/5 blur-[120px] rounded-full"></div>
         <div class="absolute bottom-1/4 -right-20 w-96 h-96 bg-secondary-fixed-dim/5 blur-[120px] rounded-full"></div>
@@ -204,7 +204,7 @@
             <div class="relative glass-panel rounded-2xl border border-outline-variant/20 p-2 shadow-[0_0_100px_rgba(0,255,255,0.05)]">
               <img 
                 class="rounded-xl w-full" 
-                src="../assets/images/new-dashboard.png" 
+                :src="dashboardImg" 
                 alt="Dashboard Preview"
               />
             </div>
@@ -286,6 +286,7 @@
 
 <script setup>
 import { h, ref, onMounted, onUnmounted } from 'vue';
+import dashboardImg from '../assets/images/new-dashboard.png';
 
 // Active section tracking for navbar
 const activeSection = ref('install');
