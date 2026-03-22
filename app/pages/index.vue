@@ -3,9 +3,12 @@
     <main class="relative pt-16">
       <!-- Hero Section -->
       <section id="hero" class="relative min-h-[90vh] flex flex-col items-center justify-center px-6 py-20 overflow-hidden">
-        <!-- Ambient Glows -->
-        <div class="absolute top-1/4 -left-20 w-96 h-96 bg-primary-fixed-dim/5 blur-[120px] rounded-full"></div>
-        <div class="absolute bottom-1/4 -right-20 w-96 h-96 bg-secondary-fixed-dim/5 blur-[120px] rounded-full"></div>
+        <!-- Animated Background -->
+        <BubbleBackground />
+        
+        <!-- Ambient Glows with pulse animation -->
+        <div class="absolute top-1/4 -left-20 w-96 h-96 bg-primary-fixed-dim/5 blur-[120px] rounded-full animate-pulse-glow"></div>
+        <div class="absolute bottom-1/4 -right-20 w-96 h-96 bg-secondary-fixed-dim/5 blur-[120px] rounded-full animate-pulse-glow" style="animation-delay: 2s;"></div>
         
         <div class="relative z-10 text-center max-w-4xl mx-auto">
           <h1 class="font-headline text-5xl md:text-8xl font-bold tracking-tight text-white mb-8 leading-[1.1]">
@@ -122,9 +125,9 @@
             <div 
               v-for="(feature, i) in features" 
               :key="i"
-              class="glass-panel p-8 rounded-xl border border-outline-variant/15 flex flex-col h-full hover:border-primary-fixed-dim/30 transition-all duration-300 group"
+              class="glass-panel feature-card p-8 rounded-xl border border-outline-variant/15 flex flex-col h-full hover:border-primary-fixed-dim/30 group"
             >
-              <div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center mb-6 text-primary-fixed-dim group-hover:scale-110 transition-transform">
+              <div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center mb-6 text-primary-fixed-dim group-hover:scale-110 transition-transform animate-float" :style="{ animationDelay: i * 0.5 + 's', animationDuration: '4s' }">
                 <component :is="feature.icon" />
               </div>
               <h3 class="font-headline text-2xl font-bold text-white mb-4">{{ feature.title }}</h3>
@@ -166,8 +169,8 @@
             </div>
           </div>
           <div class="w-full lg:w-1/2 relative">
-            <div class="absolute -inset-4 bg-primary-fixed-dim/10 blur-3xl rounded-full"></div>
-            <div class="relative glass-panel rounded-2xl border border-outline-variant/20 p-2 shadow-[0_0_100px_rgba(0,255,255,0.05)]">
+            <div class="absolute -inset-4 bg-primary-fixed-dim/10 blur-3xl rounded-full animate-pulse-glow"></div>
+            <div class="relative glass-panel rounded-2xl border border-outline-variant/20 p-2 shadow-[0_0_100px_rgba(0,255,255,0.05)] animate-float" style="animation-duration: 8s;">
               <img 
                 class="rounded-xl w-full" 
                 :src="dashboardImg" 
@@ -338,3 +341,181 @@ onUnmounted(() => {
   }
 });
 </script>
+
+<style>
+/* Pulse glow animation */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.05;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.15;
+    transform: scale(1.1);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+
+/* Gradient text animation */
+.gradient-text {
+  background: linear-gradient(90deg, #00dddd, #6fd7d6, #00fbfb, #00dddd);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 3s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Float animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Slide up reveal */
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.8s ease-out forwards;
+}
+
+/* Glow button pulse */
+.glow-button {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.glow-button::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(90deg, #00dddd, #6fd7d6, #00fbfb);
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  filter: blur(10px);
+}
+
+.glow-button:hover::before {
+  opacity: 0.6;
+}
+
+.glow-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 40px -10px rgba(0, 221, 221, 0.5);
+}
+
+/* Glass panel shimmer */
+.glass-panel {
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-panel::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.03) 50%,
+    transparent 70%
+  );
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.glass-panel:hover::after {
+  transform: translateX(100%);
+}
+
+/* Feature card hover */
+.feature-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px -20px rgba(0, 221, 221, 0.15);
+}
+
+/* Typing cursor */
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+.typing-cursor::after {
+  content: '|';
+  animation: blink 1s infinite;
+  color: #00dddd;
+}
+
+/* Scroll indicator bounce */
+@keyframes bounce-subtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+}
+
+.animate-bounce-subtle {
+  animation: bounce-subtle 2s ease-in-out infinite;
+}
+
+/* Spin slow */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+</style>
