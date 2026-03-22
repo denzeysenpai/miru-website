@@ -1,55 +1,96 @@
 <template>
   <div>
+    <!-- Scroll Progress Bar -->
+    <div class="fixed top-0 left-0 h-1 bg-gradient-to-r from-primary-fixed-dim to-secondary z-50 scroll-progress" :style="{ width: scrollProgress + '%' }"></div>
+    
     <main class="relative pt-16">
       <!-- Hero Section -->
-      <section id="hero" class="relative min-h-[90vh] flex flex-col items-center justify-center px-6 py-20 overflow-hidden">
+      <section id="hero" class="relative min-h-[100vh] flex flex-col items-center justify-center px-6 py-20 overflow-hidden">
         <!-- Animated Background -->
         <BubbleBackground />
         
         <!-- Ambient Glows with pulse animation -->
-        <div class="absolute top-1/4 -left-20 w-96 h-96 bg-primary-fixed-dim/5 blur-[120px] rounded-full animate-pulse-glow"></div>
-        <div class="absolute bottom-1/4 -right-20 w-96 h-96 bg-secondary-fixed-dim/5 blur-[120px] rounded-full animate-pulse-glow" style="animation-delay: 2s;"></div>
+        <div class="absolute top-1/4 -left-20 w-96 h-96 bg-primary-fixed-dim/10 blur-[120px] rounded-full animate-pulse-glow"></div>
+        <div class="absolute bottom-1/4 -right-20 w-96 h-96 bg-secondary-fixed-dim/10 blur-[120px] rounded-full animate-pulse-glow" style="animation-delay: 2s;"></div>
         
-        <div class="relative z-10 text-center max-w-4xl mx-auto">
-          <h1 class="font-headline text-5xl md:text-8xl font-bold tracking-tight text-white mb-8 leading-[1.1]">
-            A Go debugger <span class="gradient-text">toolkit library</span> for developers.
+        <div class="relative z-10 text-center max-w-5xl mx-auto">
+          <!-- Badge -->
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8 animate-fade-in">
+            <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+            <span class="text-sm text-neutral-300 font-medium">Production Ready v1.0</span>
+          </div>
+          
+          <h1 class="font-headline text-6xl md:text-9xl font-bold tracking-tighter text-white mb-6 leading-[0.95] animate-slide-up">
+            <span class="block">Debug Go</span>
+            <span class="gradient-text">Like Magic</span>
           </h1>
-          <p class="font-body text-xl text-on-surface-variant mb-12 max-w-2xl mx-auto">
-            Highly optimized logging, real-time memory stats, and fluent error handling for modern Go applications.
+          
+          <p class="font-body text-xl md:text-2xl text-neutral-400 mb-12 max-w-2xl mx-auto leading-relaxed animate-slide-up" style="animation-delay: 0.1s;">
+            The ethereal debugging toolkit. Structured logging, real-time memory stats, and panic recovery — all in one import.
           </p>
           
-          <div class="glass-panel p-1 rounded-xl inline-block mb-16 border border-outline-variant/15">
-            <div class="flex flex-col md:flex-row items-center gap-4 px-6 py-4">
-              <code class="font-mono text-primary-fixed-dim tracking-tight text-sm md:text-base">
-                go get github.com/denzeysenpai/miru
-              </code>
-              <button class="glow-button bg-gradient-to-br from-primary-fixed-dim to-secondary text-on-primary-fixed font-bold py-3 px-8 rounded-lg" @click="scrollToInstall">
-                Install Now
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20 animate-slide-up" style="animation-delay: 0.2s;">
+            <button class="glow-button bg-white text-black font-bold py-4 px-8 rounded-lg text-lg flex items-center gap-2 group" @click="scrollToInstall">
+              <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 18 15 12 9 6"/>
+              </svg>
+              Get Started
+            </button>
+            <div class="glass-panel px-6 py-4 rounded-lg border border-white/10 flex items-center gap-3">
+              <code class="font-mono text-primary-fixed-dim text-sm">go get github.com/denzeysenpai/miru</code>
+              <button class="text-neutral-400 hover:text-white transition-colors" @click="copyInstall">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2"/>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                </svg>
               </button>
             </div>
           </div>
         </div>
 
-        <!-- Hero Visual -->
-        <div class="relative w-full max-w-5xl aspect-video glass-panel rounded-2xl border border-outline-variant/15 overflow-hidden shadow-2xl">
-          <img 
-            class="w-full h-full object-cover opacity-60" 
-            src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&q=80" 
-            alt="Terminal Interface"
-          />
-          <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent"></div>
-          <div class="absolute bottom-8 left-8 right-8">
-            <div class="flex items-center gap-3 mb-4">
-              <div class="w-3 h-3 rounded-full bg-red-500/50"></div>
-              <div class="w-3 h-3 rounded-full bg-yellow-500/50"></div>
-              <div class="w-3 h-3 rounded-full bg-green-500/50"></div>
+        <!-- Hero Visual - Terminal Window -->
+        <div class="relative w-full max-w-4xl animate-float" style="animation-duration: 10s;">
+          <div class="absolute -inset-1 bg-gradient-to-r from-primary-fixed-dim/20 to-secondary/20 rounded-2xl blur-xl"></div>
+          <div class="relative bg-neutral-900/90 backdrop-blur-xl rounded-xl border border-white/10 overflow-hidden shadow-2xl">
+            <!-- Terminal Header -->
+            <div class="flex items-center gap-2 px-4 py-3 border-b border-white/10 bg-white/5">
+              <div class="flex gap-2">
+                <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+              </div>
+              <div class="flex-1 text-center">
+                <span class="text-xs text-neutral-500 font-mono">miru — debug</span>
+              </div>
             </div>
-            <div class="space-y-2 font-mono text-xs md:text-sm">
-              <p class="text-primary-fixed-dim">miru.Init(miru.Config{Dashboard: true})</p>
-              <p class="text-on-surface-variant">2024-05-20 14:02:11 [INFO] Miru starting on :8080</p>
-              <p class="text-on-surface-variant">2024-05-20 14:02:12 [DEBUG] Mem: Alloc=1.2MB Sys=8.4MB</p>
+            <!-- Terminal Content -->
+            <div class="p-6 font-mono text-sm">
+              <div class="flex items-center gap-2 text-neutral-500 mb-2">
+                <span class="text-green-400">➜</span>
+                <span>~</span>
+                <span class="text-primary-fixed-dim">go run main.go</span>
+              </div>
+              <div class="space-y-1 text-neutral-300 typing-animation">
+                <p><span class="text-primary-fixed-dim">miru.Init</span>(miru.Config{Dashboard: <span class="text-secondary">true</span>})</p>
+                <p class="text-neutral-500">2026-05-20 14:02:11 <span class="text-green-400">[INFO]</span> Miru starting on :8080</p>
+                <p class="text-neutral-500">2026-05-20 14:02:12 <span class="text-blue-400">[DEBUG]</span> Mem: Alloc=1.2MB Sys=8.4MB</p>
+                <p class="text-neutral-500">2026-05-20 14:02:13 <span class="text-yellow-400">[WALK]</span> map[string]int{"speed": 100}</p>
+              </div>
+              <div class="mt-4 flex items-center gap-2">
+                <span class="text-green-400">➜</span>
+                <span>~</span>
+                <span class="w-2 h-4 bg-primary-fixed-dim animate-pulse"></span>
+              </div>
             </div>
           </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-neutral-500 animate-bounce-subtle">
+          <span class="text-xs uppercase tracking-widest">Scroll</span>
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 5v14M19 12l-7 7-7-7"/>
+          </svg>
         </div>
       </section>
 
@@ -118,20 +159,30 @@
       <section class="py-32 px-6" id="features">
         <div class="max-w-7xl mx-auto">
           <div class="text-center mb-20">
-            <h2 class="font-headline text-4xl md:text-5xl font-bold text-white mb-6">Core Toolkit</h2>
-            <p class="text-on-surface-variant text-lg">Every utility you need, distilled into a single import.</p>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 mb-6">
+              <span class="text-xs font-bold text-primary-fixed-dim uppercase tracking-widest">6 Powerful Tools</span>
+            </div>
+            <h2 class="font-headline text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight">Everything You Need</h2>
+            <p class="text-neutral-400 text-lg max-w-2xl mx-auto">A complete debugging toolkit in a single import. No bloat, no dependencies, just pure functionality.</p>
           </div>
           <div class="grid md:grid-cols-3 gap-6">
             <div 
               v-for="(feature, i) in features" 
               :key="i"
-              class="glass-panel feature-card p-8 rounded-xl border border-outline-variant/15 flex flex-col h-full hover:border-primary-fixed-dim/30 group"
+              class="glass-panel feature-card p-8 rounded-2xl border border-white/10 flex flex-col h-full hover:border-primary-fixed-dim/50 group reveal-on-scroll"
+              :style="{ animationDelay: i * 0.1 + 's' }"
             >
-              <div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center mb-6 text-primary-fixed-dim group-hover:scale-110 transition-transform animate-float" :style="{ animationDelay: i * 0.5 + 's', animationDuration: '4s' }">
+              <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-white/10 to-white/5 flex items-center justify-center mb-6 text-primary-fixed-dim group-hover:scale-110 transition-transform duration-300">
                 <component :is="feature.icon" />
               </div>
-              <h3 class="font-headline text-2xl font-bold text-white mb-4">{{ feature.title }}</h3>
-              <p class="text-on-surface-variant flex-grow">{{ feature.desc }}</p>
+              <h3 class="font-headline text-2xl font-bold text-white mb-3">{{ feature.title }}</h3>
+              <p class="text-neutral-400 flex-grow leading-relaxed">{{ feature.desc }}</p>
+              <div class="mt-4 flex items-center gap-2 text-primary-fixed-dim opacity-0 group-hover:opacity-100 transition-opacity">
+                <span class="text-sm font-medium">Learn more</span>
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </div>
             </div>
           </div>
         </div>
@@ -232,7 +283,7 @@
       <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
         <div class="flex flex-col gap-2">
           <div class="text-lg font-bold text-white font-headline uppercase tracking-tighter">miru</div>
-          <p class="text-neutral-500 font-body text-sm">© 2024 Miru Toolkit. Released under MIT License.</p>
+          <p class="text-neutral-500 font-body text-sm">© 2026 Miru Toolkit. Released under MIT License.</p>
         </div>
         <div class="flex gap-8 text-sm font-body">
           <NuxtLink to="/docs" class="text-neutral-500 hover:text-white transition-colors">Documentation</NuxtLink>
@@ -254,6 +305,9 @@
 <script setup>
 import { h, ref, onMounted, onUnmounted } from 'vue';
 import dashboardImg from '../assets/images/new-dashboard.png';
+
+// Scroll progress tracking
+const scrollProgress = ref(0);
 
 // Active section tracking for navbar
 const activeSection = ref('install');
@@ -314,10 +368,34 @@ const scrollToInstall = () => {
   document.getElementById('install')?.scrollIntoView({ behavior: 'smooth' });
 };
 
+const copyInstall = () => {
+  navigator.clipboard.writeText('go get github.com/denzeysenpai/miru');
+};
+
 // Intersection Observer for scroll spy
 let observer = null;
 
+const handleScroll = () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  scrollProgress.value = (scrollTop / docHeight) * 100;
+};
+
 onMounted(() => {
+  // Scroll progress
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  
+  // Reveal on scroll
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  
+  document.querySelectorAll('.reveal-on-scroll').forEach(el => revealObserver.observe(el));
+  
   const sections = ['install', 'quickstart', 'features', 'dashboard'];
   const sectionElements = sections.map(id => document.getElementById(id)).filter(Boolean);
   
@@ -336,6 +414,7 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll);
   if (observer) {
     observer.disconnect();
   }
@@ -343,6 +422,61 @@ onUnmounted(() => {
 </script>
 
 <style>
+/* Scroll progress bar */
+.scroll-progress {
+  transition: width 0.1s ease-out;
+}
+
+/* Reveal on scroll animation */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.reveal-on-scroll.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Fade in animation */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out forwards;
+}
+
+/* Typing animation for terminal lines */
+.typing-animation p {
+  opacity: 0;
+  animation: type-line 0.5s ease forwards;
+}
+
+.typing-animation p:nth-child(1) { animation-delay: 0.5s; }
+.typing-animation p:nth-child(2) { animation-delay: 1s; }
+.typing-animation p:nth-child(3) { animation-delay: 1.5s; }
+.typing-animation p:nth-child(4) { animation-delay: 2s; }
+
+@keyframes type-line {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 /* Pulse glow animation */
 @keyframes pulse-glow {
   0%, 100% {
