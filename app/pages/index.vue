@@ -178,7 +178,7 @@
               <h3 class="font-headline text-2xl font-bold text-white mb-3">{{ feature.title }}</h3>
               <p class="text-neutral-400 flex-grow leading-relaxed">{{ feature.desc }}</p>
               <div class="mt-4 flex items-center gap-2 text-primary-fixed-dim opacity-0 group-hover:opacity-100 transition-opacity">
-                <span class="text-sm font-medium">Learn more</span>
+                <NuxtLink :to="`/docs#${feature.id}`" class="text-sm font-medium cursor-pointer">Learn more</NuxtLink>
                 <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M5 12h14M12 5l7 7-7 7"/>
                 </svg>
@@ -356,12 +356,12 @@ const AlertCircleIcon = () => h('svg', { width: 24, height: 24, viewBox: '0 0 24
 ]);
 
 const features = [
-  { icon: ActivityIcon, title: 'Catch', desc: 'Panic recovery with full stack context. Never lose the reason why your service crashed.' },
-  { icon: TerminalIcon, title: 'Out', desc: 'High-performance console logging designed for speed and human readability.' },
-  { icon: LayoutIcon, title: 'Walk', desc: 'Pretty-print complex structs, deep slices, and massive maps with indentation and color.' },
-  { icon: TimerIcon, title: 'Trace', desc: 'Simple execution time measurement. Find bottlenecks in your logic with a single line.' },
-  { icon: CpuIcon, title: 'Mem', desc: 'Real-time memory statistics. Monitor allocations and GC pauses in the console or dashboard.' },
-  { icon: AlertCircleIcon, title: 'IfErr', desc: 'Fluent error handling syntax. Simplify chains with Retry, Panic, and Do/Else logic.' }
+  { icon: ActivityIcon, title: 'Catch', desc: 'Panic recovery with full stack context. Never lose the reason why your service crashed.', id: 'catch' },
+  { icon: TerminalIcon, title: 'Out', desc: 'High-performance console logging designed for speed and human readability.', id: 'out' },
+  { icon: LayoutIcon, title: 'Walk', desc: 'Pretty-print complex structs, deep slices, and massive maps with indentation and color.', id: 'walk' },
+  { icon: TimerIcon, title: 'Trace', desc: 'Simple execution time measurement. Find bottlenecks in your logic with a single line.', id: 'trace' },
+  { icon: CpuIcon, title: 'Mem', desc: 'Real-time memory statistics. Monitor allocations and GC pauses in the console or dashboard.', id: 'mem' },
+  { icon: AlertCircleIcon, title: 'IfErr', desc: 'Fluent error handling syntax. Simplify chains with Retry, Panic, and Do/Else logic.', id: 'iferr' }
 ];
 
 const scrollToInstall = () => {
